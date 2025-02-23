@@ -54,23 +54,6 @@
           <li><a href="resume.html">Resume</a></li>
           <li><a href="publications.html" class="active">Publications</a></li>
           <li><a href="awards.html">Honors & Awards</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -105,202 +88,204 @@
     <section id="portfolio" class="portfolio section">
 
       <div class="container">
-        <div class="row">
+        <!-- <div class="row"> -->
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-conf">Conference</li>
+              <li data-filter=".filter-conf" >Conference</li>
               <li data-filter=".filter-jour">Journal</li>
-              <li data-filter=".filter-pat">patent</li>
+              <li data-filter=".filter-pat">Patent</li>
             </ul>
           </div>
+
+          <div class="row isotope-container">
+
+            <div class="portfolio-item isotope-item filter-conf">
+              <div class="portfolio-content">
+                <div class="row">
+                  <div class="col-lg-3 col-md-2 col-sm-4 col-xs-6">
+                    <img src="assets/img/Kinety.png" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title">Kinetic Typography Diffusion Model</h4>
+                    <p class="author">Seonmi Park, Inhwan Bae, <b style="color: rgb(233, 160, 112);">Seunghyun Shin</b>, and Hae-Gon Jeon</p>
+                    <p class="description">European Conference on Computer Vision (ECCV), 2024</p>
+                    <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://seonmip.github.io/kinety/"><i class="bi bi-github"></i> Project Page</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://eccv.ecva.net/"><i class="bi bi-file-text"></i> ECCV</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05000.pdf"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/SeonmiP/KineTy"><i class="bi bi-github"></i> Code</a>
+                    </div>
+                    <p class="description"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-conf">
+              <div class="portfolio-content">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/decolorfulnet.png" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title">Close Imitation of Expert Retouching for Black-and-White Photography </h4>
+                    <p class="author"><b style="color: rgb(233, 160, 112);">Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, Inwook Shim and Hae-Gon Jeon </p>
+                    <p class="description">Computer Vision and Pattern Recognition (CVPR), 2024</p>
+                    <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://cvpr.thecvf.com/Conferences/2024"><i class="bi bi-file-text"></i> CVPR</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Shin_Close_Imitation_of_Expert_Retouching_for_Black-and-White_Photography_CVPR_2024_paper.pdf"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/Decolorization"><i class="bi bi-github"></i> Code</a>
+                    </div>
+                    <p class="description"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-conf">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/ssgnet.png" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title">Task-specific Scene Structure Representations</h4>
+                    <p class="author">Jisu Shin*, <b style="color: rgb(233, 160, 112);">Seunghyun Shin*</b>, and Hae-Gon Jeon (* equally contributed)</p>
+                    <p class="description">The Thirty-Seventh AAAI Conference on Artificial Intelligence (AAAI), 2023</p>
+                    <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a>
+                    </div>
+                    <p class="description"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" style="width: 240px; height: 120px" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">KINETIC TYPOGRAPHY VIDEO GENERATION SYSTEM AND CONTROL METHOD THEREOF, AND LEARNING METHOD OF KINETIC TYPOGRAPHY VIDEO GENERATION SYSTEM</h4>
+                    <p class="author">Seonmi Park, Hae-Gon Jeon, Inhwan Bae,  <b style="color: rgb(233, 160, 112);">Seunghyun Shin</b></p>
+                    <p class="description">Korea Patent App. 10-2562677, Oct 2024</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">METHOD FOR CREATING BLACK-AND-WHITE PHOTO THAT IMITATES EXPERT RETOUCHING STYLES</h4>
+                    <p class="author">Hae-Gon Jeon, <b style="color: rgb(233, 160, 112);">Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, and Inwook Shim</p>
+                    <p class="description">US Patent App. 18/508.456, Nov 2023</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">METHOD FOR CREATING BLACK-AND-WHITE PHOTO THAT IMITATES EXPERT RETOUCHING STYLES</h4>
+                    <p class="author">Hae-Gon Jeon, <b style="color: rgb(233, 160, 112);">Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, and Inwook Shim</p>
+                    <p class="description">Korea Patent App. 10-2023-0030667, Mar 2023</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">METHOD FOR GENERATING TASK-SPECIFIC SCENE STRUCTURE</h4>
+                    <p class="author">Hae-Gon Jeon, Jisu Shin*, <b style="color: rgb(233, 160, 112);">Seunghyun Shin*</b></p>
+                    <p class="description">Korea Patent App. 10-2023-0008665, Mar 2023</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">METHOD FOR GENERATING TASK-SPECIFIC SCENE STRUCTURE</h4>
+                    <p class="author">Hae-Gon Jeon, Jisu Shin*, <b style="color: rgb(233, 160, 112);">Seunghyun Shin*</b></p>
+                    <p class="description">US Patent App. 18/410,525, Jan 2024</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-item isotope-item filter-pat">
+              <div class="portfolio-content h-100">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                    <img src="assets/img/patent.jpg" class="img-fluid my-sm-1">
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6">
+                    <h4 class="title1">IMAGE HARMONIZATION METHOD THROUGH INPAINTING BOUNDARIES OF FOREGROUND IMAGE</h4>
+                    <p class="author">Hae-Gon Jeon, Jisu Shin*, <b style="color: rgb(233, 160, 112);">Seunghyun Shin*</b></p>
+                    <p class="description">Korea Patent App. 10-2562677, May 2022</p>
+                    <!-- <div class="link">
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
+                      <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="row portfolio-container">
-
-          <div class="portfolio-item isotope-item filter-conf">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/Kinety.png" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">Kinetic Typography Diffusion Model</h4>
-                  <p class="author">Seonmi Park, Inhwan Bae, <b>Seunghyun Shin</b>, and Hae-Gon Jeon</p>
-                  <p class="description">European Conference on Computer Vision (ECCV), 2024</p>
-                  <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://seonmip.github.io/kinety/"><i class="bi bi-github"></i> Project Page</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://eccv.ecva.net/"><i class="bi bi-file-text"></i> ECCV</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05000.pdf"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/SeonmiP/KineTy"><i class="bi bi-github"></i> Code</a>
-                  </div>
-                  <p class="description"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-conf">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/decolorfulnet.png" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">Close Imitation of Expert Retouching for Black-and-White Photography</h4>
-                  <p class="author"><b>Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, Inwook Shim and Hae-Gon Jeon </p>
-                  <p class="description">Computer Vision and Pattern Recognition (CVPR), 2024</p>
-                  <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://cvpr.thecvf.com/Conferences/2024"><i class="bi bi-file-text"></i> CVPR</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Shin_Close_Imitation_of_Expert_Retouching_for_Black-and-White_Photography_CVPR_2024_paper.pdf"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/Decolorization"><i class="bi bi-github"></i> Code</a>
-                  </div>
-                  <p class="description"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-conf">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/ssgnet.png" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">Task-specific Scene Structure Representations</h4>
-                  <p class="author">Jisu Shin*, <b>Seunghyun Shin*</b>, and Hae-Gon Jeon (* equally contributed)</p>
-                  <p class="description">The Thirty-Seventh AAAI Conference on Artificial Intelligence (AAAI), 2023</p>
-                  <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a>
-                  </div>
-                  <p class="description"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">KINETIC TYPOGRAPHY VIDEO GENERATION SYSTEM AND CONTROL METHOD THEREOF, AND LEARNING METHOD OF KINETIC TYPOGRAPHY VIDEO GENERATION SYSTEM</h4>
-                  <p class="author">Seonmi Park, Hae-Gon Jeon, Inhwan Bae, <b>Seunghyun Shin</b></p>
-                  <p class="description">Korea Patent App. 10-2562677, Oct 2024</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">METHOD FOR CREATING BLACK-AND-WHITE PHOTO THAT IMITATES EXPERT RETOUCHING STYLES</h4>
-                  <p class="author">Hae-Gon Jeon, <b>Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, and Inwook Shim</p>
-                  <p class="description">US Patent App. 18/508.456, Nov 2023</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">METHOD FOR CREATING BLACK-AND-WHITE PHOTO THAT IMITATES EXPERT RETOUCHING STYLES</h4>
-                  <p class="author">Hae-Gon Jeon, <b>Seunghyun Shin</b>, Jisu Shin, Jihwan Bae, and Inwook Shim</p>
-                  <p class="description">Korea Patent App. 10-2023-0030667, Mar 2023</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">METHOD FOR GENERATING TASK-SPECIFIC SCENE STRUCTURE</h4>
-                  <p class="author">Hae-Gon Jeon, Jisu Shin*, <b>Seunghyun Shin*</b></p>
-                  <p class="description">Korea Patent App. 10-2023-0008665, Mar 2023</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">METHOD FOR GENERATING TASK-SPECIFIC SCENE STRUCTURE</h4>
-                  <p class="author">Hae-Gon Jeon, Jisu Shin*, <b>Seunghyun Shin*</b></p>
-                  <p class="description">US Patent App. 18/410,525, Jan 2024</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item isotope-item filter-pat">
-            <div class="portfolio-content h-100">
-              <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                  <img src="assets/img/patent-icon.svg" class="img-fluid my-sm-1">
-                </div>
-                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
-                  <h4 class="title">IMAGE HARMONIZATION METHOD THROUGH INPAINTING BOUNDARIES OF FOREGROUND IMAGE</h4>
-                  <p class="author">Hae-Gon Jeon, Jisu Shin*, <b>Seunghyun Shin*</b></p>
-                  <p class="description">Korea Patent App. 10-2562677, May 2022</p>
-                  <!-- <div class="link">
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://ojs.aaai.org/index.php/AAAI/article/view/25322"><i class="bi bi-file-text"></i> AAAI</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://arxiv.org/abs/2301.00555"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-                    <a class="btn btn-outline-secondary btn-sm" target="_blank" href="https://github.com/seunghyuns98/SSGNet"><i class="bi bi-github"></i> Code</a> -->
-                  <!-- </div> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section><!-- End Portfolio Section -->
