@@ -1243,9 +1243,12 @@ section,
 .portfolio .portfolio-content {
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .portfolio .portfolio-content img {
+  width: 240px;
+  height: 120px;
   transition: 0.3s;
 }
 
@@ -1260,7 +1263,7 @@ section,
 }
 
 .portfolio .portfolio-content .portfolio-info h4 {
-  font-size: 14px;
+  font-size: 12px;
   padding: 5px 10px;
   font-weight: 400;
   color: #ffffff;
@@ -1279,6 +1282,36 @@ section,
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
 }
+
+.portfolio-item {
+  font-size: 14px; /* Adjust as needed */
+}
+
+.portfolio-item .title {
+  font-size: 21px; /* Adjust title font size */
+  margin-bottom: 10px;
+  margin-top: 3px;
+}
+.portfolio-item .title1 {
+  font-size: 17px; /* Adjust title font size */
+  margin-bottom: 10px;
+  margin-top: 3px;
+}
+.portfolio-item .author {
+  font-size: 15px; /* Adjust author font size */
+  margin-bottom: 5px;
+}
+
+.portfolio-item .description {
+  font-size: 15px; /* Adjust description font size */
+  margin-bottom: 7px;
+
+}
+
+.portfolio-item .btn {
+  font-size: 14px; /* Adjust button text size */
+}
+
 
 .portfolio .portfolio-content .portfolio-info .preview-link,
 .portfolio .portfolio-content .portfolio-info .details-link {
@@ -1390,9 +1423,9 @@ section,
 .contact .info-item .icon {
   color: var(--contrast-color);
   background-color: var(--accent-color);
-  width: 56px;
-  height: 56px;
-  font-size: 24px;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
