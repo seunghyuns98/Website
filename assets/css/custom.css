@@ -1,0 +1,19 @@
+/* =============================================
+   Custom additions for single-page scroll
+   기존 main.css는 건드리지 않고 이 파일만 덧붙임
+   ============================================= */
+
+/* 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 고정 헤더에 가려지지 않도록 섹션 위쪽 여백 확보 */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* 모션 감속 선호 사용자 존중 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
