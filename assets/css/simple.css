@@ -53,7 +53,7 @@
   --footer-bg: #14161a;
   --footer-fg: #ededed;
   --measure: 60rem;   /* layout width */
-  --prose: 42rem;     /* cap for long paragraphs */
+  --prose: 52rem;     /* cap for the bio paragraph only */
   --heading-font: "Raleway", "Segoe UI", system-ui, sans-serif;
 }
 
@@ -144,9 +144,24 @@ h1 {
   font-size: 1rem;
 }
 
-.quicklinks { margin: 1.1rem 0 0; }
+.quicklinks {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 
-/* round icon buttons, used in the intro and in Contact */
+.quicklinks a { white-space: nowrap; }
+
+.quicklinks .sep { padding: 0 0.45rem; color: var(--rule); }
+
+.cv-date {
+  margin-left: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* round icon buttons, used in Contact */
 
 .icon-links {
   display: flex;
@@ -227,7 +242,6 @@ h1 {
 .news .when { flex-basis: 6rem; }
 
 .news .what {
-  max-width: var(--prose);
   font-size: 0.95rem;
   line-height: 1.6;
 }
