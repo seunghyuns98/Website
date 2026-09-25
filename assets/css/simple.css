@@ -52,7 +52,8 @@
   --shadow: rgba(0, 0, 0, 0.1);
   --footer-bg: #14161a;
   --footer-fg: #ededed;
-  --measure: 46rem;
+  --measure: 60rem;   /* layout width */
+  --prose: 42rem;     /* cap for long paragraphs */
   --heading-font: "Raleway", "Segoe UI", system-ui, sans-serif;
 }
 
@@ -187,7 +188,10 @@ h1 {
 
 .bio { margin: 2rem 0 0; }
 
-.bio p { margin: 0 0 0.9rem; }
+.bio p {
+  margin: 0 0 0.9rem;
+  max-width: var(--prose);
+}
 
 .bio p:last-child { margin-bottom: 0; }
 
@@ -223,6 +227,7 @@ h1 {
 .news .when { flex-basis: 6rem; }
 
 .news .what {
+  max-width: var(--prose);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -291,7 +296,7 @@ h1 {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .interests-grid > li {
@@ -352,7 +357,7 @@ h1 {
 
 .pub-thumb {
   flex: 0 0 auto;
-  width: 132px;
+  width: 168px;
   border-radius: 3px;
   border: 1px solid var(--rule);
   background: var(--rule);
@@ -495,7 +500,7 @@ h1 {
 .map {
   display: block;
   width: 100%;
-  height: 280px;
+  height: 340px;
   margin-top: 1.75rem;
   border: 1px solid var(--rule);
   border-radius: 4px;
