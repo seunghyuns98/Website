@@ -58,7 +58,7 @@
         <li>
           <div class="when">Sep 2026</div>
           <div class="what">
-            <a href="https://sh0xed98b8.github.io/DyMoS" target="_blank" rel="noopener">DyMoS</a>
+            <a href="https://shoxedqbbb.github.io/DyMoS/" target="_blank" rel="noopener">DyMoS</a>
             has been accepted at <strong>NeurIPS 2026</strong>! 🎉
           </div>
         </li>
@@ -226,7 +226,7 @@
           </div>
         </li>
         <li>
-          <img class="pub-thumb" src="assets/img/welike2party.gif" alt="" width="168" loading="lazy">
+          <div class="pub-thumb compare" data-base="assets/img/ctrl_without.mp4" data-ours="assets/img/ctrl_with.mp4" data-left="Without" data-right="With control" tabindex="0" role="slider" aria-label="Without control versus Ctrl-CWM" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
           <div class="pub-body">
             <h3 class="pub-title">Controllable Crowd Generation through World-Model Planning</h3>
             <p class="pub-authors">Jungyu Lee, Jisu Shin, <span class="me">Seunghyun Shin</span>, Hae-Gon Jeon </p>
@@ -239,15 +239,15 @@
           </div>
         </li>
         <li>
-          <img class="pub-thumb" src="assets/img/Dymos.gif" alt="" width="168" loading="lazy">
+          <div class="pub-thumb compare" data-base="assets/img/dymos_base.mp4" data-ours="assets/img/dymos_ours.mp4" data-left="Baseline" data-right="DyMoS" tabindex="0" role="slider" aria-label="Baseline versus DyMoS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
           <div class="pub-body">
             <h3 class="pub-title">Rebalancing Reference Frame Dominance to Improve Motion in Image-to-Video Models</h3>
             <p class="pub-authors">Wooseok Jeon*, Seungho Park*, <span class="me">Seunghyun Shin</span>, Sangeyl Lee, Hyeonho Jeong, Hae-Gon Jeon <em>(* equal contribution)</em></p>
             <p class="pub-venue">Neural Information Processing Systems (NeurIPS), 2026</p>
             <p class="pub-links">
               <a href="http://arxiv.org/abs/2605.19398" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf-fill"></i> Paper</a>
-              <a href="https://sh0xed98b8.github.io/DyMoS" target="_blank" rel="noopener"><i class="bi bi-link-45deg"></i> Project Page</a>
-              <a href="https://github.com/sh0xed98b8/DyMoS" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>
+              <a href="https://shoxedqbbb.github.io/DyMoS/" target="_blank" rel="noopener"><i class="bi bi-link-45deg"></i> Project Page</a>
+              <a href="https://github.com/shoxedqBbB/DyMoS" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>
             </p>
           </div>
         </li>
@@ -510,6 +510,85 @@
   </footer>
 
   <a href="#" class="scroll-top" aria-label="Back to top"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script>
+    // Before/after thumbnails: two clips stacked, a draggable bar reveals
+    // the right-hand one. Drag right to show the baseline, left to show ours.
+    (function () {
+      var nodes = document.querySelectorAll(".compare");
+      if (!nodes.length || !window.PointerEvent) return;
+
+      Array.prototype.forEach.call(nodes, function (el) {
+        el.innerHTML =
+          '<video class="cmp-base" src="' + el.getAttribute("data-base") +
+            '" muted loop playsinline preload="auto"></video>' +
+          '<video class="cmp-ours" src="' + el.getAttribute("data-ours") +
+            '" muted loop playsinline preload="auto"></video>' +
+          '<span class="cmp-tag cmp-l">' + el.getAttribute("data-left") + "</span>" +
+          '<span class="cmp-tag cmp-r">' + el.getAttribute("data-right") + "</span>" +
+          '<span class="cmp-handle"></span>';
+
+        var vb = el.querySelector(".cmp-base");
+        var vo = el.querySelector(".cmp-ours");
+        var handle = el.querySelector(".cmp-handle");
+        var pct = 50;
+
+        function set(p) {
+          pct = Math.max(0, Math.min(100, p));
+          handle.style.left = pct + "%";
+          vo.style.clipPath = "inset(0 0 0 " + pct + "%)";
+          el.setAttribute("aria-valuenow", Math.round(pct));
+        }
+
+        function fromX(clientX) {
+          var r = el.getBoundingClientRect();
+          if (r.width) set(((clientX - r.left) / r.width) * 100);
+        }
+
+        var dragging = false;
+        el.addEventListener("pointerdown", function (e) {
+          dragging = true;
+          try { el.setPointerCapture(e.pointerId); } catch (err) {}
+          fromX(e.clientX);
+          e.preventDefault();
+        });
+        el.addEventListener("pointermove", function (e) {
+          if (dragging) fromX(e.clientX);
+        });
+        function stop(e) {
+          dragging = false;
+          if (e && e.pointerId !== undefined) {
+            try { el.releasePointerCapture(e.pointerId); } catch (err) {}
+          }
+        }
+        el.addEventListener("pointerup", stop);
+        el.addEventListener("pointercancel", stop);
+
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") { set(pct - 5); e.preventDefault(); }
+          else if (e.key === "ArrowRight") { set(pct + 5); e.preventDefault(); }
+        });
+
+        // start both clips together, then nudge them back in step if they drift
+        var started = false;
+        function start() {
+          if (started || vb.readyState < 3 || vo.readyState < 3) return;
+          started = true;
+          try { vb.currentTime = 0; vo.currentTime = 0; } catch (err) {}
+          vb.play().catch(function () {});
+          vo.play().catch(function () {});
+        }
+        vb.addEventListener("canplay", start);
+        vo.addEventListener("canplay", start);
+        vb.addEventListener("timeupdate", function () {
+          if (started && Math.abs(vb.currentTime - vo.currentTime) > 0.15) {
+            try { vo.currentTime = vb.currentTime; } catch (err) {}
+          }
+        });
+        start();
+      });
+    })();
+  </script>
 
 </body>
 
