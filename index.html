@@ -214,7 +214,7 @@
       </div>
       <ul class="pubs">
         <li>
-          <img class="pub-thumb" src="assets/img/welike2party.gif" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/welike2party.gif" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">WeLike2Party! In-Context Motion Transfer for Multi-Human Image Animation</h3>
             <p class="pub-authors">Sangeyl Lee, <span class="me">Seunghyun Shin</span>, Seungho Park, Wooseok Jeon, Hae-Gon Jeon </p>
@@ -226,7 +226,14 @@
           </div>
         </li>
         <li>
-          <div class="pub-thumb compare" data-base="assets/img/ctrl_without.mp4" data-ours="assets/img/ctrl_with.mp4" data-left="Without" data-right="With control" tabindex="0" role="slider" aria-label="Without control versus Ctrl-CWM" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          <div class="pub-thumb widget">
+            <div class="face">
+              <div class="compare" data-base="assets/img/ctrl_without.mp4" data-ours="assets/img/ctrl_with.mp4"
+                   tabindex="0" role="slider" aria-label="Without control versus Ctrl-CWM"
+                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+              <div class="foot"><span>Without</span><span class="arrow"></span><span>Controlled</span></div>
+            </div>
+          </div>
           <div class="pub-body">
             <h3 class="pub-title">Controllable Crowd Generation through World-Model Planning</h3>
             <p class="pub-authors">Jungyu Lee, Jisu Shin, <span class="me">Seunghyun Shin</span>, Hae-Gon Jeon </p>
@@ -239,7 +246,21 @@
           </div>
         </li>
         <li>
-          <div class="pub-thumb compare" data-base="assets/img/dymos_base.mp4" data-ours="assets/img/dymos_ours.mp4" data-left="Baseline" data-right="DyMoS" tabindex="0" role="slider" aria-label="Baseline versus DyMoS" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+          <div class="pub-thumb widget">
+            <div class="flip" id="dymos-flip">
+              <div class="face front">
+                <div class="compare" data-base="assets/img/dymos_base.mp4" data-ours="assets/img/dymos_ours.mp4"
+                     tabindex="0" role="slider" aria-label="Baseline versus DyMoS"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+                <div class="foot"><span>Baseline</span><span class="arrow"></span><span>DyMoS</span></div>
+              </div>
+              <div class="face back">
+                <div class="stack" data-videos="assets/img/dymos_step0.mp4,assets/img/dymos_step1.mp4,assets/img/dymos_step2.mp4,assets/img/dymos_step3.mp4"></div>
+                <div class="foot"><span>Static</span><input type="range" class="stack-range" min="0" max="3" step="1" value="0" aria-label="Static to dynamic"><span>Dynamic</span></div>
+              </div>
+            </div>
+            <button type="button" class="flip-btn" data-target="dymos-flip" aria-label="Switch view" title="Switch view"></button>
+          </div>
           <div class="pub-body">
             <h3 class="pub-title">Rebalancing Reference Frame Dominance to Improve Motion in Image-to-Video Models</h3>
             <p class="pub-authors">Wooseok Jeon*, Seungho Park*, <span class="me">Seunghyun Shin</span>, Sangeyl Lee, Hyeonho Jeong, Hae-Gon Jeon <em>(* equal contribution)</em></p>
@@ -252,7 +273,30 @@
           </div>
         </li>
         <li>
-          <img class="pub-thumb" src="assets/img/Trimotion.gif" alt="" width="168" loading="lazy">
+          <div class="pub-thumb widget">
+            <div class="face">
+              <div class="swap">
+                <div class="compare is-on" data-base="text:Dolly-in, then truck-left."
+                     data-ours="assets/img/tri_text.mp4" data-left="Reference" data-right="TriMotion"
+                     title="The camera starts with a steady dolly-in motion, moving forward at a consistent pace. As the sequence progresses, a smooth truck-left motion begins. Throughout the transition, the dolly-in continues at a reduced rate, blending both movements to the end of the shot."
+                     tabindex="0" role="slider" aria-label="Text reference versus TriMotion output"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+                <div class="compare" data-base="assets/img/tri_ref_video.mp4"
+                     data-ours="assets/img/tri_video.mp4" data-left="Reference" data-right="TriMotion"
+                     tabindex="0" role="slider" aria-label="Video reference versus TriMotion output"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+                <div class="compare" data-base="assets/img/tri_ref_pose.mp4"
+                     data-ours="assets/img/tri_pose.mp4" data-left="Reference" data-right="TriMotion"
+                     tabindex="0" role="slider" aria-label="Pose reference versus TriMotion output"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+              </div>
+              <div class="foot seg" role="tablist" aria-label="Reference modality">
+                <button type="button" class="seg-btn is-on" role="tab" aria-selected="true">Text</button>
+                <button type="button" class="seg-btn" role="tab" aria-selected="false">Video</button>
+                <button type="button" class="seg-btn" role="tab" aria-selected="false">Pose</button>
+              </div>
+            </div>
+          </div>
           <div class="pub-body">
             <h3 class="pub-title">TriMotion: Modality-Agnostic Camera Control for Video Generation</h3>
             <p class="pub-authors"><span class="me">Seunghyun Shin</span>, Jifei Song, Wooseok Jeon, Hae-Gon Jeon, Jiankang Deng</p>
@@ -266,7 +310,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/HandWritting.gif" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/HandWritting.gif" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Bridging Online and Offline Handwriting via Differentiable Physical Rendering</h3>
             <p class="pub-authors">Seonmi Park, <span class="me">Seunghyun Shin</span>, Vihaan Misra, Dongmin Shin, Ukcheol Shin, Jean Oh, Hae-Gon Jeon</p>
@@ -280,7 +324,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/Attack.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/Attack.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Universal Image Immunization against Diffusion-based Image Editing via Semantic Injection</h3>
             <p class="pub-authors">Chanhui Lee, Donggyu Choi, <span class="me">Seunghyun Shin</span>, Hae-Gon Jeon, Jeany Son</p>
@@ -293,7 +337,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/Simulator.gif" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/Simulator.gif" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">PIAvatar: Physically Interactive Avatars via Deformation Gradient Decoupling</h3>
             <p class="pub-authors">Sang-Hun Han, Min-Gyu Park, Jisu Shin, <span class="me">Seunghyun Shin</span>, Jin-Hwi Park, Hae-Gon Jeon</p>
@@ -305,7 +349,7 @@
           </div>
         </li>
         <li>
-          <img class="pub-thumb" src="assets/img/teaser.gif" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/teaser.gif" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Motion Prior Distillation in Time Reversal Sampling for Generative Inbetweening</h3>
             <p class="pub-authors">Wooseok Jeon, <span class="me">Seunghyun Shin</span>, Dongmin Shin, Hae-Gon Jeon</p>
@@ -319,7 +363,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/chroma.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/chroma.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">CHROMA: Consistent Harmonization of Multi-View Appearance via Bilateral Grid Prediction</h3>
             <p class="pub-authors">Jisu Shin, Richard Shaw, <span class="me">Seunghyun Shin</span>, Zhensong Zhang, Hae-Gon Jeon, Eduardo P&eacute;rez-Pellitero</p>
@@ -331,7 +375,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/ColorGrading.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/ColorGrading.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Video Color Grading via Look-Up Table Generation</h3>
             <p class="pub-authors"><span class="me">Seunghyun Shin</span>, Dongmin Shin, Jisu Shin, Hae-Gon Jeon, Joon-Young Lee</p>
@@ -344,7 +388,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/Kinety.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/Kinety.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Kinetic Typography Diffusion Model</h3>
             <p class="pub-authors">Seonmi Park, Inhwan Bae, <span class="me">Seunghyun Shin</span>, Hae-Gon Jeon</p>
@@ -358,7 +402,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/decolorfulnet.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/decolorfulnet.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Close Imitation of Expert Retouching for Black-and-White Photography</h3>
             <p class="pub-authors"><span class="me">Seunghyun Shin</span>, Jisu Shin, Jihwan Bae, Inwook Shim, Hae-Gon Jeon</p>
@@ -371,7 +415,7 @@
         </li>
 
         <li>
-          <img class="pub-thumb" src="assets/img/ssgnet.png" alt="" width="168" loading="lazy">
+          <img class="pub-thumb" src="assets/img/ssgnet.png" alt="" width="220" loading="lazy">
           <div class="pub-body">
             <h3 class="pub-title">Task-specific Scene Structure Representations</h3>
             <p class="pub-authors"><span class="me">Seunghyun Shin</span>*, Jisu Shin*, Hae-Gon Jeon <em>(* equal contribution)</em></p>
@@ -512,37 +556,105 @@
   <a href="#" class="scroll-top" aria-label="Back to top"><i class="bi bi-arrow-up-short"></i></a>
 
   <script>
-    // Before/after thumbnails: two clips stacked, a draggable bar reveals
-    // the right-hand one. Drag right to show the baseline, left to show ours.
+    // Interactive publication thumbnails: drag-to-reveal comparisons, plus
+    // stacks of clips switched by a range slider or a segmented control.
     (function () {
-      var nodes = document.querySelectorAll(".compare");
-      if (!nodes.length || !window.PointerEvent) return;
+      function each(list, fn) { Array.prototype.forEach.call(list, fn); }
 
-      Array.prototype.forEach.call(nodes, function (el) {
-        el.innerHTML =
-          '<video class="cmp-base" src="' + el.getAttribute("data-base") +
-            '" muted loop playsinline preload="auto"></video>' +
-          '<video class="cmp-ours" src="' + el.getAttribute("data-ours") +
-            '" muted loop playsinline preload="auto"></video>' +
-          '<span class="cmp-tag cmp-l">' + el.getAttribute("data-left") + "</span>" +
-          '<span class="cmp-tag cmp-r">' + el.getAttribute("data-right") + "</span>" +
-          '<span class="cmp-handle"></span>';
+      function mkVideo(src, cls) {
+        var v = document.createElement("video");
+        v.src = src;
+        v.muted = true;
+        v.loop = true;
+        v.preload = "auto";
+        v.setAttribute("playsinline", "");
+        if (cls) v.className = cls;
+        return v;
+      }
 
-        var vb = el.querySelector(".cmp-base");
-        var vo = el.querySelector(".cmp-ours");
-        var handle = el.querySelector(".cmp-handle");
+      function tag(text, side) {
+        var s = document.createElement("span");
+        s.className = "cmp-tag cmp-" + side;
+        s.textContent = text;
+        return s;
+      }
+
+      // start a set of clips together, then nudge them back if they drift
+      function sync(vids) {
+        if (!vids.length) return;
+        var started = false;
+        function start() {
+          if (started) return;
+          for (var i = 0; i < vids.length; i++) {
+            if (vids[i].readyState < 3) return;
+          }
+          started = true;
+          vids.forEach(function (v) {
+            try { v.currentTime = 0; } catch (e) {}
+            v.play().catch(function () {});
+          });
+        }
+        vids.forEach(function (v) { v.addEventListener("canplay", start); });
+        vids[0].addEventListener("timeupdate", function () {
+          if (!started) return;
+          for (var i = 1; i < vids.length; i++) {
+            if (Math.abs(vids[i].currentTime - vids[0].currentTime) > 0.15) {
+              try { vids[i].currentTime = vids[0].currentTime; } catch (e) {}
+            }
+          }
+        });
+        start();
+      }
+
+      // wire a segmented control to a show(index) callback
+      function wireSegments(scope, show) {
+        var btns = scope.querySelectorAll(".seg-btn");
+        each(btns, function (b, i) {
+          b.addEventListener("click", function () {
+            show(i);
+            each(btns, function (x, k) {
+              x.classList.toggle("is-on", k === i);
+              x.setAttribute("aria-selected", k === i ? "true" : "false");
+            });
+          });
+        });
+      }
+
+      // ---- drag-to-reveal comparison ----
+      each(document.querySelectorAll(".compare"), function (el) {
+        var baseSrc = el.getAttribute("data-base") || "";
+        var clips = [];
+        var base;
+
+        if (baseSrc.indexOf("text:") === 0) {
+          base = document.createElement("div");
+          base.className = "cmp-text";
+          base.textContent = baseSrc.slice(5);
+        } else {
+          base = mkVideo(baseSrc, "cmp-base");
+          clips.push(base);
+        }
+        var ours = mkVideo(el.getAttribute("data-ours"), "cmp-ours");
+        clips.push(ours);
+
+        var handle = document.createElement("span");
+        handle.className = "cmp-handle";
+        el.appendChild(base);
+        el.appendChild(ours);
+        if (el.getAttribute("data-left")) el.appendChild(tag(el.getAttribute("data-left"), "l"));
+        if (el.getAttribute("data-right")) el.appendChild(tag(el.getAttribute("data-right"), "r"));
+        el.appendChild(handle);
+
         var pct = 50;
-
         function set(p) {
           pct = Math.max(0, Math.min(100, p));
           handle.style.left = pct + "%";
-          vo.style.clipPath = "inset(0 0 0 " + pct + "%)";
+          ours.style.clipPath = "inset(0 0 0 " + pct + "%)";
           el.setAttribute("aria-valuenow", Math.round(pct));
         }
-
-        function fromX(clientX) {
+        function fromX(x) {
           var r = el.getBoundingClientRect();
-          if (r.width) set(((clientX - r.left) / r.width) * 100);
+          if (r.width) set(((x - r.left) / r.width) * 100);
         }
 
         var dragging = false;
@@ -563,29 +675,49 @@
         }
         el.addEventListener("pointerup", stop);
         el.addEventListener("pointercancel", stop);
-
         el.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") { set(pct - 5); e.preventDefault(); }
           else if (e.key === "ArrowRight") { set(pct + 5); e.preventDefault(); }
         });
 
-        // start both clips together, then nudge them back in step if they drift
-        var started = false;
-        function start() {
-          if (started || vb.readyState < 3 || vo.readyState < 3) return;
-          started = true;
-          try { vb.currentTime = 0; vo.currentTime = 0; } catch (err) {}
-          vb.play().catch(function () {});
-          vo.play().catch(function () {});
-        }
-        vb.addEventListener("canplay", start);
-        vo.addEventListener("canplay", start);
-        vb.addEventListener("timeupdate", function () {
-          if (started && Math.abs(vb.currentTime - vo.currentTime) > 0.15) {
-            try { vo.currentTime = vb.currentTime; } catch (err) {}
-          }
+        sync(clips);
+      });
+
+      // ---- several comparisons, one shown at a time ----
+      each(document.querySelectorAll(".swap"), function (el) {
+        var panes = el.querySelectorAll(".compare");
+        wireSegments(el.parentNode, function (i) {
+          each(panes, function (p, k) { p.classList.toggle("is-on", k === i); });
         });
-        start();
+      });
+
+      // ---- stacked clips driven by a range slider ----
+      each(document.querySelectorAll(".stack"), function (el) {
+        var vids = (el.getAttribute("data-videos") || "").split(",").map(function (src, i) {
+          var v = mkVideo(src.trim(), i === 0 ? "is-on" : "");
+          el.appendChild(v);
+          return v;
+        });
+        function show(i) {
+          vids.forEach(function (v, k) { v.classList.toggle("is-on", k === i); });
+        }
+        var range = el.parentNode.querySelector(".stack-range");
+        if (range) {
+          range.max = String(vids.length - 1);
+          range.addEventListener("input", function () {
+            show(parseInt(range.value, 10) || 0);
+          });
+        }
+        wireSegments(el.parentNode, show);
+        sync(vids);
+      });
+
+      // ---- flip buttons ----
+      each(document.querySelectorAll(".flip-btn"), function (b) {
+        b.addEventListener("click", function () {
+          var t = document.getElementById(b.getAttribute("data-target"));
+          if (t) t.classList.toggle("flipped");
+        });
       });
     })();
   </script>

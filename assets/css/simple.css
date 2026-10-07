@@ -371,7 +371,7 @@ h1 {
 
 .pub-thumb {
   flex: 0 0 auto;
-  width: 168px;
+  width: 220px;
   border-radius: 3px;
   border: 1px solid var(--rule);
   background: var(--rule);
@@ -651,20 +651,83 @@ footer {
   .map { height: 220px; }
 }
 
-/* ---------- Before/after comparison thumbnail ---------- */
+/* ---------- Interactive publication thumbnails ---------- */
 
-.compare {
+.widget {
   position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  cursor: ew-resize;
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
+  border: 0;
+  background: transparent;
+  perspective: 900px;
 }
 
-.compare video {
+.face {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+/* flip card: comparison on the front, continuous control on the back */
+
+.flip {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip.flipped { transform: rotateY(180deg); }
+
+.flip .face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip .front { position: relative; }
+
+.flip .back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+.flip-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 5;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.flip-btn::before { content: "bb"; }
+
+.flip-btn:hover { background: var(--accent); border-color: #ffffff; }
+
+/* video stage, shared by both widget kinds */
+
+.compare,
+.stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  overflow: hidden;
+}
+
+.compare video,
+.stack video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -672,6 +735,15 @@ footer {
   object-fit: cover;
   display: block;
   pointer-events: none;
+}
+
+/* drag to reveal */
+
+.compare {
+  cursor: ew-resize;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .compare .cmp-ours { clip-path: inset(0 0 0 50%); }
@@ -702,25 +774,151 @@ footer {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
-.compare .cmp-tag {
+.compare:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: -2px;
+}
+
+/* stacked variants, one visible at a time */
+
+.stack video {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.stack video.is-on { opacity: 1; }
+
+/* footer strip under every widget */
+
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 7px;
+  border-top: 1px solid var(--rule);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.foot .arrow {
+  position: relative;
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--rule);
+}
+
+.foot .arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  border-left: 4px solid var(--rule);
+  border-top: 2.5px solid transparent;
+  border-bottom: 2.5px solid transparent;
+}
+
+.stack-range {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 12px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* segmented control (TriMotion reference modality) */
+
+.foot.seg {
+  gap: 3px;
+  padding: 4px;
+}
+
+.seg-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 2px 0;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.seg-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.seg-btn.is-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* modality swap: several comparisons stacked, one visible at a time */
+
+.swap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+}
+
+.swap > .compare {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.swap > .compare.is-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* corner labels naming each side of a comparison */
+
+.cmp-tag {
   position: absolute;
   bottom: 4px;
+  z-index: 2;
   padding: 1px 5px;
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.55);
   color: #ffffff;
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.7;
   white-space: nowrap;
   pointer-events: none;
 }
 
-.compare .cmp-l { left: 4px; }
+.cmp-l { left: 4px; }
 
-.compare .cmp-r { right: 4px; }
+.cmp-r { right: 4px; }
 
-.compare:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 2px;
+/* a written prompt standing in where the reference is not a video */
+
+.cmp-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  background: #15171b;
+  color: #e4e4e4;
+  font-size: 10px;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
 }
