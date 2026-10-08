@@ -588,17 +588,31 @@
   <script>
     // Interactive publication thumbnails: drag-to-reveal comparisons, plus
     // stacks of clips switched by a range slider or a segmented control.
+    //
+    // Mobile notes: browsers there ignore preload="auto" and only fetch
+    // metadata, so readyState never climbs on its own. Playback has to be
+    // asked for and retried as data lands, never gated on readiness. Only
+    // groups that are both on screen and on a visible face are allowed to
+    // run, which also keeps the number of decoding clips small.
     (function () {
+      var RATE = 0.85;
+      var groups = [];
+
       function each(list, fn) { Array.prototype.forEach.call(list, fn); }
 
       function mkVideo(src, cls) {
         var v = document.createElement("video");
-        v.src = src;
+        // attributes, not just properties: iOS keys its autoplay policy off these
+        v.setAttribute("muted", "");
+        v.setAttribute("playsinline", "");
+        v.setAttribute("webkit-playsinline", "");
+        v.setAttribute("loop", "");
+        v.setAttribute("preload", "metadata");
         v.muted = true;
         v.loop = true;
-        v.preload = "auto";
-        v.setAttribute("playsinline", "");
+        v.defaultMuted = true;
         if (cls) v.className = cls;
+        v.src = src;
         return v;
       }
 
@@ -609,35 +623,39 @@
         return s;
       }
 
-      // clips in a group start together and are held to the leader. the rate is
-      // set before play so nothing diverges on the way in, and a loop wrap
-      // (time jumping backwards) forces an immediate re-align.
-      var RATE = 0.85;
-
-      function sync(vids) {
-        if (!vids.length) return;
+      // a set of clips that must stay in step, gated on being visible
+      function makeGroup(vids, host) {
+        var g = {
+          vids: vids, host: host,
+          onScreen: false, onFace: true, running: false, last: 0
+        };
         var lead = vids[0];
-        var started = false;
-        var last = 0;
 
-        function start() {
-          if (started) return;
-          for (var i = 0; i < vids.length; i++) {
-            if (vids[i].readyState < 3) return;
-          }
-          started = true;
-          vids.forEach(function (v) {
-            v.playbackRate = RATE;
-            try { v.currentTime = 0; } catch (e) {}
-          });
-          vids.forEach(function (v) { v.play().catch(function () {}); });
+        function kick(v) {
+          if (!g.running) return;
+          v.playbackRate = RATE;
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
         }
 
+        g.update = function () {
+          var want = g.onScreen && g.onFace;
+          if (want === g.running) return;
+          g.running = want;
+          if (want) {
+            vids.forEach(kick);
+          } else {
+            vids.forEach(function (v) { v.pause(); });
+          }
+        };
+
+        g.retry = function () { vids.forEach(kick); };
+
         function align() {
-          if (!started) return;
+          if (!g.running || vids.length < 2) return;
           var t = lead.currentTime;
-          var wrapped = t < last - 0.1;
-          last = t;
+          var wrapped = t < g.last - 0.1;
+          g.last = t;
           for (var i = 1; i < vids.length; i++) {
             var v = vids[i];
             if (v.playbackRate !== RATE) v.playbackRate = RATE;
@@ -647,13 +665,21 @@
           }
         }
 
-        vids.forEach(function (v) { v.addEventListener("canplay", start); });
         lead.addEventListener("timeupdate", align);
         lead.addEventListener("seeked", align);
-        start();
+
+        // keep asking as data arrives, and if the browser stalls us
+        vids.forEach(function (v) {
+          ["loadedmetadata", "loadeddata", "canplay", "stalled", "suspend"].forEach(function (ev) {
+            v.addEventListener(ev, function () { kick(v); });
+          });
+        });
+
+        host.__group = g;
+        groups.push(g);
+        return g;
       }
 
-      // wire a segmented control to a show(index) callback
       function wireSegments(scope, show) {
         var btns = scope.querySelectorAll(".seg-btn");
         each(btns, function (b, i) {
@@ -745,15 +771,23 @@
           else if (e.key === "ArrowRight") { set(pct + 5); e.preventDefault(); }
         });
 
-        sync(clips);
+        makeGroup(clips, el);
       });
 
       // ---- several comparisons, one shown at a time ----
       each(document.querySelectorAll(".swap"), function (el) {
         var panes = el.querySelectorAll(".compare");
-        wireSegments(el.parentNode, function (i) {
-          each(panes, function (p, k) { p.classList.toggle("is-on", k === i); });
+        function show(i) {
+          each(panes, function (p, k) {
+            var on = k === i;
+            p.classList.toggle("is-on", on);
+            if (p.__group) { p.__group.onFace = on; p.__group.update(); }
+          });
+        }
+        each(panes, function (p) {
+          if (p.__group) p.__group.onFace = p.classList.contains("is-on");
         });
+        wireSegments(el.parentNode, show);
       });
 
       // ---- stacked clips driven by a range slider ----
@@ -774,23 +808,70 @@
           });
         }
         wireSegments(el.parentNode, show);
-        sync(vids);
+        makeGroup(vids, el);
       });
 
-      // the research-interest cards are plain autoplay clips, not sync groups
-      each(document.querySelectorAll(".interests-grid video"), function (v) {
-        function slow() { v.playbackRate = RATE; }
-        slow();
-        v.addEventListener("loadedmetadata", slow);
+      // ---- flip cards: only the face you can see is allowed to run ----
+      each(document.querySelectorAll(".flip"), function (card) {
+        function apply() {
+          var flipped = card.classList.contains("flipped");
+          each(card.querySelectorAll(".face"), function (face) {
+            var visible = face.classList.contains("back") ? flipped : !flipped;
+            each(face.querySelectorAll(".compare, .stack"), function (el) {
+              if (el.__group) { el.__group.onFace = visible; el.__group.update(); }
+            });
+          });
+        }
+        card.__applyFaces = apply;
+        apply();
       });
 
-      // ---- flip buttons ----
       each(document.querySelectorAll(".flip-btn"), function (b) {
         b.addEventListener("click", function () {
           var t = document.getElementById(b.getAttribute("data-target"));
-          if (t) t.classList.toggle("flipped");
+          if (!t) return;
+          t.classList.toggle("flipped");
+          if (t.__applyFaces) t.__applyFaces();
         });
       });
+
+      // ---- run only what is on screen ----
+      if (window.IntersectionObserver) {
+        var io = new IntersectionObserver(function (entries) {
+          each(entries, function (e) {
+            var g = e.target.__group;
+            if (!g) return;
+            g.onScreen = e.isIntersecting;
+            g.update();
+          });
+        }, { rootMargin: "150px 0px" });
+        groups.forEach(function (g) { io.observe(g.host); });
+      } else {
+        groups.forEach(function (g) { g.onScreen = true; g.update(); });
+      }
+
+      // the research-interest cards are plain autoplay clips
+      each(document.querySelectorAll(".interests-grid video"), function (v) {
+        function slow() {
+          v.playbackRate = RATE;
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        }
+        slow();
+        v.addEventListener("loadedmetadata", slow);
+        v.addEventListener("canplay", slow);
+      });
+
+      // last resort: some browsers only release playback after a real gesture
+      function unlock() {
+        groups.forEach(function (g) { g.retry(); });
+        each(document.querySelectorAll(".interests-grid video"), function (v) {
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        });
+      }
+      document.addEventListener("touchend", unlock, { once: true, passive: true });
+      document.addEventListener("click", unlock, { once: true });
     })();
   </script>
 
