@@ -426,8 +426,8 @@
         <li>
           <div class="pub-thumb widget">
             <div class="face">
-              <div class="compare" data-base="assets/img/bw_released.mp4"
-                   data-ours="assets/img/bw_ours.mp4"
+              <div class="compare" data-base="assets/img/bw_front_released.mp4"
+                   data-ours="assets/img/bw_front_ours.mp4"
                    tabindex="0" role="slider" aria-label="Released black-and-white edition versus ours"
                    aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
               <div class="foot"><span>Released B&amp;W</span><span class="arrow"></span><span>Ours</span></div>
@@ -609,10 +609,17 @@
         return s;
       }
 
-      // start a set of clips together, then nudge them back if they drift
+      // clips in a group start together and are held to the leader. the rate is
+      // set before play so nothing diverges on the way in, and a loop wrap
+      // (time jumping backwards) forces an immediate re-align.
+      var RATE = 0.85;
+
       function sync(vids) {
         if (!vids.length) return;
+        var lead = vids[0];
         var started = false;
+        var last = 0;
+
         function start() {
           if (started) return;
           for (var i = 0; i < vids.length; i++) {
@@ -620,19 +627,29 @@
           }
           started = true;
           vids.forEach(function (v) {
+            v.playbackRate = RATE;
             try { v.currentTime = 0; } catch (e) {}
-            v.play().catch(function () {});
           });
+          vids.forEach(function (v) { v.play().catch(function () {}); });
         }
-        vids.forEach(function (v) { v.addEventListener("canplay", start); });
-        vids[0].addEventListener("timeupdate", function () {
+
+        function align() {
           if (!started) return;
+          var t = lead.currentTime;
+          var wrapped = t < last - 0.1;
+          last = t;
           for (var i = 1; i < vids.length; i++) {
-            if (Math.abs(vids[i].currentTime - vids[0].currentTime) > 0.15) {
-              try { vids[i].currentTime = vids[0].currentTime; } catch (e) {}
+            var v = vids[i];
+            if (v.playbackRate !== RATE) v.playbackRate = RATE;
+            if (wrapped || Math.abs(v.currentTime - t) > 0.04) {
+              try { v.currentTime = t; } catch (e) {}
             }
           }
-        });
+        }
+
+        vids.forEach(function (v) { v.addEventListener("canplay", start); });
+        lead.addEventListener("timeupdate", align);
+        lead.addEventListener("seeked", align);
         start();
       }
 
@@ -760,9 +777,9 @@
         sync(vids);
       });
 
-      // every clip runs a touch under real time so the loops read more easily
-      each(document.querySelectorAll("video"), function (v) {
-        function slow() { v.playbackRate = 0.85; }
+      // the research-interest cards are plain autoplay clips, not sync groups
+      each(document.querySelectorAll(".interests-grid video"), function (v) {
+        function slow() { v.playbackRate = RATE; }
         slow();
         v.addEventListener("loadedmetadata", slow);
       });
