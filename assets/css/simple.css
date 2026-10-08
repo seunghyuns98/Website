@@ -37,6 +37,7 @@
 .bi-twitter-x::before { content: "\f8db"; }
 .bi-arrow-up-short::before { content: "\f145"; }
 .bi-mortarboard-fill::before { content: "\f6fd"; }
+.bi-arrow-counterclockwise::before { content: "\f117"; }
 
 /* ---------- Tokens ---------- */
 
@@ -328,7 +329,8 @@ h1 {
   box-shadow: 0 12px 26px var(--shadow);
 }
 
-.interests-grid img {
+.interests-grid img,
+.interests-grid video {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 2;
@@ -375,6 +377,16 @@ h1 {
   border-radius: 3px;
   border: 1px solid var(--rule);
   background: var(--rule);
+}
+
+/* every still thumbnail sits in the same 16:9 box, letterboxed rather than
+   cropped so nothing is cut out of a paper figure */
+img.pub-thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: contain;
+  background: var(--surface);
 }
 
 .pub-body { flex: 1 1 auto; min-width: 0; }
@@ -694,6 +706,9 @@ footer {
 }
 
 .flip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -711,7 +726,6 @@ footer {
   transition: background 0.2s ease;
 }
 
-.flip-btn::before { content: "bb"; }
 
 .flip-btn:hover { background: var(--accent); border-color: #ffffff; }
 
@@ -921,4 +935,55 @@ footer {
   font-style: italic;
   line-height: 1.5;
   text-align: center;
+}
+
+/* a small reference still pinned over the left-hand clip */
+
+.compare .cmp-inset {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 3;
+  width: 34%;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.compare .cmp-inset img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.compare .cmp-inset figcaption {
+  padding: 1px 0;
+  background: rgba(0, 0, 0, 0.72);
+  color: #ffffff;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* caption strip naming the effect applied on the right-hand clip */
+
+.compare .cmp-note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 3px 6px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #ffffff;
+  font-size: 8px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  pointer-events: none;
 }
